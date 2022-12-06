@@ -1,0 +1,6 @@
+s, val = input(), 4
+
+for i in range(val, len(s)):
+    if len(set(s[i-val:i])) == val:
+        print(i)
+        break
