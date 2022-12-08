@@ -27,4 +27,4 @@ def get_dir_size(s):
     return sz
 
 needed = get_dir_size("/") - 40000000
-print(sorted([get_dir_size(k) for k in Dirs if get_dir_size(k) >= needed])[0])
+print(min([get_dir_size(k) for k in Dirs if get_dir_size(k) >= needed]))
