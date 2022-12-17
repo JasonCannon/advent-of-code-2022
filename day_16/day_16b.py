@@ -1,7 +1,5 @@
 import sys, re
 from collections import defaultdict
-from functools import lru_cache
-from tqdm import tqdm
 
 pattern = "Valve ([A-Z]+) has flow rate=(\d+); tunnels? leads? to valves? ([A-Z]+[, [A-Z]+]*)"
 L = [(v, int(f), set(map(lambda x: x.strip(), t.split(',')))) for v, f, t in re.findall(pattern, sys.stdin.read())]
@@ -21,7 +19,6 @@ for k in Valves:
             D[i][j] = min(D[i][j], D[i][k] + D[k][j])
 
 Paths, Feasible = [], []
-@lru_cache(maxsize=None)
 def dfs(curr, t):
     Paths.append(curr)
     ignore = set(curr)
