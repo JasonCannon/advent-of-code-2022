@@ -39,10 +39,7 @@ Feasible.sort(reverse = True)
 best = 0
 for i in range(len(Paths)):
     if Feasible[i][0] + Feasible[i + 1][0] < best: break
-    mx = -1
-    for j in range(i + 1, len(Paths)):
-        if Feasible[j][0] <= mx: break
-        if Feasible[i][1].isdisjoint(Feasible[j][1]): mx = max(mx, Feasible[j][0])
+    mx = next((Feasible[j][0] for j in range(i + 1, len(Paths)) if Feasible[i][1].isdisjoint(Feasible[j][1])), 0)
     best = max(best, Feasible[i][0] + mx)
 
 print(best)
